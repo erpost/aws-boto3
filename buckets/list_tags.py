@@ -14,17 +14,21 @@ def list_tags():
         try:
             s3_client = boto3.client('s3')
             response = s3_client.get_bucket_tagging(Bucket=bucket.name)
-            pprint(response)
+            print('#' * 25)
+            print('Bucket: ', bucket.name)
+            tag_set = response['TagSet']
+            # pprint(tag_set)
+            for tags in tag_set:
+                for tag in tags:
+                    print(tag + ': ' + tags[tag])
 
         except ClientError as err:
             if err.response['Error']['Code'] == 'NoSuchTagSet':
-                print('No Tags: {}'.format(err.response['Error']['BucketName']))
+                print('Bucket: {}'.format(err.response['Error']['BucketName']))
+                print('No Tags')
             else:
                 print('Unknown Error: {}'.format(err.response))
 
 
 if __name__ == '__main__':
-    # aws_buckets = list_buckets()
-    # for aws_bucket in aws_buckets:
-    #     print(aws_bucket.name)
     list_tags()
