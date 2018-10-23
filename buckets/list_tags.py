@@ -24,10 +24,13 @@ def list_tags():
 
         except ClientError as err:
             if err.response['Error']['Code'] == 'NoSuchTagSet':
+                print('#' * 25)
                 print('Bucket: {}'.format(err.response['Error']['BucketName']))
                 print('No Tags')
             else:
                 print('Unknown Error: {}'.format(err.response))
+
+    print('#' * 25)
 
 
 if __name__ == '__main__':
