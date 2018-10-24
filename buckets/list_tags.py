@@ -1,5 +1,6 @@
 import boto3
 from botocore.exceptions import ClientError
+from pprint import pprint
 
 
 def list_buckets():
@@ -19,7 +20,7 @@ def list_tags():
             tag_set = response['TagSet']
             for tags in tag_set:
                 tag_dict[tags['Key']] = tags['Value']
-            print(tag_dict)
+            pprint(tag_dict)
 
         except ClientError as err:
             if err.response['Error']['Code'] == 'NoSuchTagSet':
