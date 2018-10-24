@@ -17,10 +17,14 @@ def list_tags():
             print('#' * 25)
             print('Bucket: ', bucket.name)
             tag_set = response['TagSet']
-            # pprint(tag_set)
-            for tags in tag_set:
-                for tag in tags:
-                    print(tag + ': ' + tags[tag])
+            pprint(tag_set)
+            print(len(tag_set))
+            for n in tag_set:
+                print(tag_set[n])
+                # for k, v in tags.items():
+                #     print(v)
+                # for tag in tags:
+                #     print(tag + ': ' + tags[tag])
 
         except ClientError as err:
             if err.response['Error']['Code'] == 'NoSuchTagSet':
