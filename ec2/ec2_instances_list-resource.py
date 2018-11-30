@@ -18,4 +18,7 @@ for aws_region in get_regions():
         if instance.tags is None:
             print('No Tags')
         else:
-            print('Tags: ', instance.tags)
+            tag_dict = {}
+            for tags in instance.tags:
+                tag_dict[tags['Key']] = tags['Value']
+            print(tag_dict)
