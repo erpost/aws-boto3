@@ -15,6 +15,7 @@ for aws_region in get_regions():
     print('#' * 10, aws_region, '#' * 10)
     for instance in ec2.instances.all():
         print(instance.id, ':', instance.state['Name'])
-        print(instance.tags)
-        for idx, tag in enumerate(instance.tags, start=1):
-            print("\t- [{0}] Key: {1}\tValue: {2}".format(idx,(tag['Key']), (tag['Value'])))
+        if instance.tags is None:
+            print('No Tags')
+        else:
+            print('Tags: ', instance.tags)
