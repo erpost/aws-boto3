@@ -7,7 +7,7 @@ outfile = 'prod-instances.csv'
 with open(outfile, 'w', newline='') as outfile:
     out_file = csv.writer(outfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL)
     out_file.writerow(['Instance ID'] + ['Region'] + ['Instance State'] +
-                      ['Private DNS'] + ['Public DNS'] + ['Tags'])
+                      ['Private DNS'] + ['Public DNS'] + ['Environment'] + ['Tags'])
 
 
     def get_regions():
@@ -23,6 +23,7 @@ with open(outfile, 'w', newline='') as outfile:
         ec2 = boto3.resource('ec2', region_name=aws_region)
         for instance in ec2.instances.all():
             tag_dict = {}
+            env_tag = 'None'
             print('Instance ID: ', instance.id)
             print('Region: ', aws_region)
             print('Instance State: ', instance.state['Name'])
@@ -42,11 +43,10 @@ with open(outfile, 'w', newline='') as outfile:
                 print('No Tags')
             else:
                 for tags in instance.tags:
-                    # env = 'None'
-                    # if tags['Key'] == 'Environment':
-                    #     print('Environment Tag: ', tags['Value'])
-                    #     env = tags['Value']
+                    if tags['Key'] == 'Environment':
+                        env_tag = tags['Value']
+                        print('Environment Tag: ', tags['Value'])
                     tag_dict[tags['Key']] = tags['Value']
-                    print(tag_dict)
+                print(tag_dict)
             out_file.writerow([instance.id] + [aws_region] + [instance.state['Name']] +
-                              [priv_dns] + [pub_dns] + [tag_dict])
+                              [priv_dns] + [pub_dns] + [env_tag] + [tag_dict])
