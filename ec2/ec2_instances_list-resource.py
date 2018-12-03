@@ -2,7 +2,7 @@ import boto3
 import csv
 
 
-outfile = 'prod-instances.csv'
+outfile = 'ec2-instances.csv'
 
 with open(outfile, 'w', newline='') as outfile:
     out_file = csv.writer(outfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL)
