@@ -1,7 +1,7 @@
 import boto3
 
-profile = ''
-aws_region = ''
+profile = 'default'
+aws_region = 'us-east-1'
 
 boto3.setup_default_session(profile_name=profile)
 
