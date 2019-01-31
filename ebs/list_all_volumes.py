@@ -25,5 +25,4 @@ def get_volumes():
 
 
 if __name__ == '__main__':
-    # print(get_regions())
     print(get_volumes())
