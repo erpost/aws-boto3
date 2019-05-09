@@ -1,7 +1,7 @@
 import boto3
 
 
-profile = 'jau-sec-admin'
+profile = 'default'
 region = 'us-east-1'
 
 

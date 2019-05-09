@@ -2,7 +2,7 @@ from pprint import pprint
 import boto3
 
 
-profile = 'jau-sec-admin'
+profile = 'default'
 region = 'us-east-1'
 
 
@@ -17,4 +17,4 @@ if __name__ == '__main__':
     buckets = list_buckets()
     pprint(buckets)
     for bucket in buckets['Buckets']:
-        print(f'{bucket["Name"]}')
+        print(bucket['Name'])
