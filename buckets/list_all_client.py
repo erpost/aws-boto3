@@ -15,6 +15,7 @@ def list_buckets():
 
 if __name__ == '__main__':
     buckets = list_buckets()
+    print(type(buckets))
     pprint(buckets)
     for bucket in buckets['Buckets']:
         print(f'{bucket["Name"]}')
