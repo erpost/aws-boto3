@@ -51,4 +51,4 @@ with open(outfile, 'w', newline='') as outfile:
                     tag_dict[tags['Key']] = tags['Value']
                 print(tag_dict)
             out_file.writerow([name_tag] + [instance.id] + [aws_region] +
-                              [instance.state['Name']] +[priv_dns] + [pub_dns] + [env_tag] + [tag_dict])
+                              [instance.state['Name']] + [priv_dns] + [pub_dns] + [env_tag] + [tag_dict])
