@@ -1,7 +1,7 @@
 import configparser
 import os
 
-key_file = os.path.expanduser('~/.aws/credentials')
+key_file = os.path.expanduser('~/.aws/config')
 
 parser = configparser.ConfigParser()
 parser.read(key_file)

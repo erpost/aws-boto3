@@ -2,7 +2,7 @@ from pprint import pprint
 import boto3
 
 
-profile = 'default'
+profile = 'sub1'
 region = 'us-east-1'
 
 
