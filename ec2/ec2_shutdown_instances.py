@@ -18,3 +18,20 @@ for running_instance in running_instances:
 print(running_ids)
 
 ec2.instances.filter(InstanceIds=running_ids).stop()
+
+# Can also set filtering for opposite (only shutdown instances without the Sandman Tag)
+#
+# all_running_instances = ec2.instances.filter(
+#     Filters=[
+#         {'Name': 'instance-state-name', 'Values': ['running']}
+#     ]
+# )
+#
+# sandman_instances = ec2.instances.filter(
+#     Filters=[
+#         {'Name': 'instance-state-name', 'Values': ['running']},
+#         {'Name': 'tag:sandman', 'Values': ['true']}
+#     ]
+# )
+#
+# non_sandman_instances = set(all_running_instances).difference(set(snadman_instances))
