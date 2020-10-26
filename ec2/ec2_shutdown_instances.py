@@ -1,11 +1,14 @@
 import boto3
 
-profile = 'sub1'
+# profile = 'sub1'
 region = 'us-east-1'
 running_ids = []
 
-boto3.setup_default_session(profile_name=profile)
-ec2 = boto3.resource('ec2', region_name=region)
+# boto3.setup_default_session(profile_name=profile)
+boto3.setup_default_session()
+
+# ec2 = boto3.resource('ec2', region_name=region)
+ec2 = boto3.resource('ec2')
 
 running_instances = ec2.instances.filter(
                     Filters=[{'Name': 'instance-state-name', 'Values': ['running']},
